@@ -3,14 +3,16 @@
 ## Folders
 
 - Use `kebab-case` for folder names by default.
-- Use `NNN-task-slug` for task folders.
-- Use `NNN-bug-slug` for bug folders.
+- Use `agent-os/project/users/<user-id>/` for user-scoped execution records.
+- Use `YYYYMMDD-HHMMSS-slug` for task folders inside each user folder.
+- Use `YYYYMMDD-HHMMSS-slug` for bug folders inside each user folder.
+- Use timestamp IDs for chronological sort and to avoid shared numeric counters.
 
 ## Files
 
 - Use `kebab-case` file names by default.
-- Use required task file names: `NNN.raw.md`, `NNN.spec.md`, `NNN.log.md`.
-- Use required bug file names: `NNN.bug.md`, `NNN.log.md`.
+- Use required task file names: `<work-id>.raw.md`, `<work-id>.spec.md`, `<work-id>.log.md`.
+- Use required bug file names: `<work-id>.bug.md`, `<work-id>.log.md`.
 
 ## Convex Exception
 

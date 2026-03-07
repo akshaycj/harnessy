@@ -1,1 +1,1 @@
-This folder stores dated planning documents named as `YYYY-MM-DD-topic-plan.md` for milestone-level execution planning.
+This folder stores shared dated planning documents named `YYYY-MM-DD-topic-plan.md` for milestone-level execution planning.

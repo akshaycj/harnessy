@@ -1,4 +1,6 @@
-# Bug Report
+# Bug Report Template
+
+Template-only file for new bug creation.
 
 ## Summary
 

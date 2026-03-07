@@ -1,1 +1,1 @@
-This folder stores default stack compositions by app type to guide fast and consistent project setup.
+This folder stores default stack compositions and folder structures by app type to guide fast and consistent project setup.

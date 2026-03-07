@@ -1,1 +1,1 @@
-This folder stores project goals, plans, tasks, bugs, and architecture decisions used during execution.
+This folder stores shared project artifacts (`goal`, `plans`, `decisions`), user-scoped execution records (`users/<user-id>/`), and reusable templates (`templates/`).

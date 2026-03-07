@@ -1,0 +1,5 @@
+.DS_Store
+
+# Local cloned inspiration repositories are for reference only.
+references/repos/*
+!references/repos/readme.md

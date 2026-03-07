@@ -14,4 +14,16 @@ These are default choices; use them unless constraints force an exception.
 
 - Start with the preferred option.
 - Deviate only for hard constraints (platform APIs, performance, legal, or delivery risk).
-- Record deviation reason in `NNN.log.md`.
+- Record deviation reason in `<work-id>.log.md`.
+
+## Preferred App Folder Mapping
+
+| Use Case | Folder |
+| --- | --- |
+| Web | `apps/web` |
+| Mobile | `apps/mobile` |
+| macOS | `apps/mac` |
+| Backend | `apps/backend` |
+
+- Use `web` as the canonical folder name for browser-facing apps.
+- Do not use `apps/website`.

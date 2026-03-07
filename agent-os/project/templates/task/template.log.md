@@ -1,4 +1,6 @@
-# Execution Log
+# Execution Log Template
+
+Template-only file for new task creation.
 
 ## YYYY-MM-DD
 

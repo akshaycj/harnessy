@@ -18,4 +18,4 @@ These are default service choices; implementation details should be resolved at 
 
 - Use preferred integrations first.
 - Deviate only when constraints require it.
-- Record every deviation reason in `NNN.log.md`.
+- Record every deviation reason in `<work-id>.log.md`.
