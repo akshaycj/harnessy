@@ -1,76 +1,96 @@
-# Agent-First Project Template
+# Harness-First Agent Engineering Template
 
-Goal-oriented repository structure for teams building with AI coding agents.
+This template codifies a workflow used in production over years: humans steer, agents execute, and the repository acts as the system of record.
 
-## Why Use This Template
+Recent industry writing now reflects this same direction:
+[Harness engineering: leveraging Codex in an agent-first world](https://openai.com/index/harness-engineering/)
 
-Most AI-assisted projects start with a prompt and immediately jump into implementation. That is fast, but usually unstructured: no stable plan, no durable context, and no reliable record of why decisions were made.
+## Why This Exists
 
-This template turns that into a controlled workflow:
+Prompt-only workflows move fast at first, then collapse into ambiguity:
 
-- every task starts with explicit input
-- every implementation follows a scoped spec
-- every decision is logged for future sessions
-- every agent follows the same orchestration contract
+- unclear ownership of requirements
+- weak continuity between sessions
+- no durable decision trail
+- context trapped in chat instead of codebase
+
+This template solves that by turning your repo into an execution harness with explicit structure, memory, and execution contracts.
+
+## Harness Principles
+
+1. Human attention is the bottleneck.
+2. Agent legibility is a first-class engineering concern.
+3. `AGENTS.md` is a map, not an encyclopedia.
+4. Plans, logs, and rules are versioned in-repo.
+5. Parallel work must avoid naming collisions by default.
+6. Structure and constraints beat ad-hoc prompting.
 
 ## What You Get
 
-- A central agent control file: `AGENTS.md`
-- A modular rule system: `agent-os/rules/`
-- A persistent execution history per contributor: `agent-os/project/users/<user-id>/tasks/*` and `agent-os/project/users/<user-id>/bugs/*`
-- A reusable examples library: `agent-os/examples/*`
-- A raw reference workspace: `references/repos/*` for cloned inspiration repos
-- A structure that works for humans and agents together
+- Orchestration contract: `AGENTS.md` and `CLAUDE.md`
+- Modular rules: `agent-os/rules/common|presets|preferences`
+- User-scoped execution history: `agent-os/project/users/<user-id>/`
+- Shared project memory: `agent-os/project/goal.md`, `plans/`, `decisions/`
+- Reusable templates: `agent-os/project/templates/task|bug`
+- Work item generator: `agent-os/scripts/new-work-item.sh`
+- Curated pattern library: `agent-os/examples/*`
+- Raw external context workspace: `references/repos/*`
 
-## Core Workflow
+## Work Item Model (Chronological + Collision-Resistant)
+
+All task and bug folders use:
+
+`YYYYMMDD-HHMMSS-<slug>`
+
+Example:
+
+`20260307-092401-auth-session-refresh`
+
+This gives you:
+
+- natural chronological sort by folder name
+- clear visual signal of what changed most recently
+- no shared global counters between collaborators
+
+## How Execution Works
 
 For each feature task:
 
-1. Create the item with `agent-os/scripts/new-work-item.sh task <slug>`.
-2. `<work-id>.raw.md` captures the request and constraints.
-3. `<work-id>.spec.md` captures phased implementation steps.
-4. `<work-id>.log.md` captures execution details, decisions, verification, and follow-ups.
+1. Run `agent-os/scripts/new-work-item.sh task <slug>`
+2. Fill `<work-id>.raw.md`
+3. Fill `<work-id>.spec.md`
+4. Append implementation history in `<work-id>.log.md`
 
 For each bug:
 
-1. Create the item with `agent-os/scripts/new-work-item.sh bug <slug>`.
-2. `<work-id>.bug.md` captures reproduction and impact.
-3. `<work-id>.log.md` captures investigation, fix, and verification.
+1. Run `agent-os/scripts/new-work-item.sh bug <slug>`
+2. Fill `<work-id>.bug.md`
+3. Append fix history in `<work-id>.log.md`
 
-Rule: exactly one log file per task or bug, continuously appended.
-Work item IDs use `YYYYMMDD-HHMMSS`, so sorting by folder name is chronological.
+Rule:
 
-## Controlled Agent Execution
+- exactly one log file per work item
+- always append, never fork log variants
 
-Agents must execute in this order:
+## Team Parallelism by Design
 
-1. Read project goal in `agent-os/project/goal.md`
-2. Resolve contributor workspace in `agent-os/project/users/<user-id>/`
-3. Resolve active task/bug folder in that user workspace
-4. Read `agent-os/rules/common/workflow.md` first
-5. Read remaining common rules
-6. Read stack defaults and preferences
-7. Implement and append updates to the same `<work-id>.log.md`
+Each contributor writes under:
 
-This creates continuity across sessions and prevents context loss.
+`agent-os/project/users/<user-id>/tasks|bugs`
 
-## Who This Is For
+`<user-id>` is derived from local git identity by the helper script, so two teammates can create work items at the same time without stepping on shared numeric IDs.
 
-- Solo builders using agents for end-to-end shipping
-- Teams coordinating multiple agents and contributors
-- Agencies that need repeatable AI delivery standards
-- Open-source maintainers who want traceable AI-generated changes
-
-## Repository Structure
+## Repository Topology
 
 ```text
 .
 ├── AGENTS.md
+├── CLAUDE.md
 ├── agent-os/
 │   ├── rules/
 │   │   ├── common/
-│   │   ├── preferences/
-│   │   └── presets/
+│   │   ├── presets/
+│   │   └── preferences/
 │   ├── project/
 │   │   ├── goal.md
 │   │   ├── plans/
@@ -78,34 +98,38 @@ This creates continuity across sessions and prevents context loss.
 │   │   ├── templates/
 │   │   │   ├── task/
 │   │   │   └── bug/
-│   │   ├── users/
-│   │   │   └── <user-id>/
-│   │   │       ├── tasks/
-│   │   │       └── bugs/
+│   │   └── users/
+│   │       └── <user-id>/
+│   │           ├── tasks/
+│   │           └── bugs/
 │   ├── scripts/
 │   └── examples/
 ├── apps/
+│   ├── web/
+│   ├── mobile/
+│   ├── mac/
+│   └── backend/
 └── references/
+    └── repos/
 ```
 
 ## Quick Start
 
 1. Copy this template into a new repository.
-2. Update `agent-os/project/goal.md` for your project.
-3. Set preferred defaults in `agent-os/rules/preferences/`.
-4. Create your first user-scoped task with `agent-os/scripts/new-work-item.sh task <slug>`.
-5. Clone external inspiration repos into `references/repos/` when needed.
-6. Run agent sessions through `AGENTS.md` and keep logs updated.
+2. Define project intent in `agent-os/project/goal.md`.
+3. Tune stack defaults in `agent-os/rules/presets/` and `preferences/`.
+4. Create your first task:
+   `agent-os/scripts/new-work-item.sh task bootstrap-foundation`
+5. Run agent sessions through `AGENTS.md`.
+6. Keep all decisions and execution traces inside the repo.
 
-## Why This Works
+## What This Optimizes For
 
-Prompt-only workflows optimize for immediate output. Structured workflows optimize for sustained progress.
+- Speed with control
+- High-throughput agent collaboration
+- Traceable engineering decisions
+- Cross-session continuity
+- Long-horizon maintainability
 
-This template helps you keep speed while adding:
-
-- accountability
-- auditability
-- repeatability
-- cross-session memory
-
-So agents do not just write code; they produce trackable engineering work.
+The goal is not just AI-generated code.
+The goal is a repository that continuously improves as an engineering control system.
