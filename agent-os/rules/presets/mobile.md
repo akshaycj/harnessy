@@ -44,3 +44,4 @@ apps/mobile/
 - Organize mobile flows in `src/features/` by feature.
 - Keep Convex client wiring under `src/lib/convex/`.
 - Keep shared cross-feature logic under `src/shared/`.
+- When using Convex in this stack, also apply `agent-os/rules/preferences/convex.md`.

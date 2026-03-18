@@ -45,3 +45,4 @@ apps/mac/
 - Keep UI logic in `src/` and runtime/native concerns in `src-tauri/`.
 - Keep Tauri command bridge thin and domain logic typed in TypeScript.
 - Use `src/features/` for isolated feature modules.
+- When using Convex in this stack, also apply `agent-os/rules/preferences/convex.md`.

@@ -1,1 +1,1 @@
-This folder stores preferred frameworks and integrations to use by default unless constraints require deviation.
+This folder stores preferred frameworks, integrations, and technology-specific operating rules to use by default unless constraints require deviation.

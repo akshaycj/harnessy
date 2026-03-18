@@ -63,3 +63,4 @@ apps/web/
 - Keep all business logic and DB access in `convex/`.
 - Reserve `src/frontend/components/ui/` for shadcn/ui primitives.
 - Keep `src/app/` focused on routing and route boundaries.
+- When using Convex in this stack, also apply `agent-os/rules/preferences/convex.md`.

@@ -11,9 +11,10 @@ This file is the primary orchestration layer for this project.
 5. Read the remaining common rules in `agent-os/rules/common/`.
 6. Read stack mapping in `agent-os/rules/presets/` for the target app type.
 7. Read preferences in `agent-os/rules/preferences/frameworks.md` and `agent-os/rules/preferences/integrations.md`.
-8. Read relevant material in `references/` when external context is needed.
-9. Use skills and current official docs to resolve implementation details.
-10. Append updates to the existing `<work-id>.log.md` for the same task/bug.
+8. If Convex is part of the selected stack, read `agent-os/rules/preferences/convex.md`.
+9. Read relevant material in `references/` when external context is needed.
+10. Use skills and current official docs to resolve implementation details.
+11. Append updates to the existing `<work-id>.log.md` for the same task/bug.
 
 ## Rule Resolution
 
